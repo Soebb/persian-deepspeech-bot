@@ -2,4 +2,3 @@ pyrogram
 tgcrypto
 https://github.com/Soebb/persian-deepspeech/archive/main.zip
 https://github.com/Soebb/transcribe_anything/archive/main.zip
-python-dotenv
