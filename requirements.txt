@@ -1,4 +1,4 @@
 pyrogram
 tgcrypto
-https://github.com/Soebb/persian-deepspeech/archive/main.zip
-https://github.com/Soebb/transcribe_anything/archive/main.zip
+https://github.com/Soebb/pydeepspeech/archive/main.zip
+static_ffmpeg
