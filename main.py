@@ -1,5 +1,6 @@
 import os
-from transcribe_anything.api import transcribe
+from pydeepspeech.transcribe import transcribe
+from pydeepspeech.install_models import install_deepspeechmodules
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
@@ -14,10 +15,13 @@ Bot = Client(
     api_hash = API_HASH
 )
 
+
+install_deepspeechmodules(
+
 START_TXT = """
 Hi {}, I'm Persian transcriber Bot.
 
-Send a media(video/audio) or a YouTube URL or path of a local file in your system.
+Send an audio to get started.
 """
 
 START_BTN = InlineKeyboardMarkup(
@@ -38,15 +42,8 @@ async def start(bot, update):
     )
 
 
-@Bot.on_message(filters.private & filters.text)
-async def from_yturl_or_local_file(_, m):
-    output_name = f"transcript{m.message_id}.txt"
-    await m.reply("Processing..")
-    transcribe(m.text, output_name)
-    await m.reply_document(output_name)
 
-
-@Bot.on_message(filters.private & filters.media)
+@Bot.on_message(filters.private & filters.audio)
 async def from_tg_files(_, m):
     msg = await m.reply("Downloading..")
     media = await m.download()
