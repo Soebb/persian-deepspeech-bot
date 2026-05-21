@@ -50,9 +50,10 @@ async def from_tg_files(_, m):
     msg = await m.reply("Downloading..")
     media = await m.download()
     await msg.edit_text("Processing..")
-    output_name = os.path.basename(media).rsplit('.', 1)[0] + ".txt"
-    transcribed_txt = transcribe(aggressive=1, audio=, model="/models", just_as_text=True):
-
+    out_wav = m.audio.file_name + ".wav"
+    as_wav_command = f"static_ffmpeg -y -i {media} -ac 1 -ar 16000 {out_wav}"
+    os.system(as_wav_command)
+    transcribed_txt = transcribe(aggressive=1, audio=out_wav, model="/models", just_as_text=True)
     await msg.edit_text(transcribed_txt)
     os.remove(media)
 
