@@ -15,8 +15,10 @@ Bot = Client(
     api_hash = API_HASH
 )
 
-
-install_deepspeechmodules(
+# install Persian model
+URL_PBMM = "https://itml.cl.indiana.edu/models/fa/output_graph.pbmm"
+URL_SCORER = "https://itml.cl.indiana.edu/models/fa/kenlm.scorer"
+install_deepspeechmodules(URL_PBMM, URL_SCORER)
 
 START_TXT = """
 Hi {}, I'm Persian transcriber Bot.
@@ -49,8 +51,9 @@ async def from_tg_files(_, m):
     media = await m.download()
     await msg.edit_text("Processing..")
     output_name = os.path.basename(media).rsplit('.', 1)[0] + ".txt"
-    transcribe(media, output_name)
-    await m.reply_document(output_name)
+    transcribed_txt = transcribe(aggressive=1, audio=, model="/models", just_as_text=True):
+
+    await msg.edit_text(transcribed_txt)
     os.remove(media)
 
 
