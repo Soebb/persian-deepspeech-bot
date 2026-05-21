@@ -1,4 +1,4 @@
-A Telegram bot to generate transcript from telegram/local files or YouTube URLs. (by mozilla deepspeech service)
+A Telegram bot to generate transcript from Persian speech. (using mozilla deepspeech service)
 
 
-Works on Python 3.8 or higher.
+Works on Python 3.7 or higher.
