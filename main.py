@@ -28,7 +28,7 @@ Send an audio to get started.
 
 START_BTN = InlineKeyboardMarkup(
         [[
-        InlineKeyboardButton('Source Code', url='https://github.com/soebb/persian-transcriber-bot'),
+        InlineKeyboardButton('Source Code', url='https://github.com/soebb/'),
         ]]
     )
 
@@ -53,7 +53,7 @@ async def from_tg_files(_, m):
     out_wav = m.audio.file_name + ".wav"
     as_wav_command = f"static_ffmpeg -y -i {media} -ac 1 -ar 16000 {out_wav}"
     os.system(as_wav_command)
-    transcribed_txt = transcribe(aggressive=1, audio=out_wav, model="/models", just_as_text=True)
+    transcribed_txt = transcribe(aggressive=1, audio=out_wav, just_as_text=True)
     await msg.edit_text(transcribed_txt)
     os.remove(media)
 
